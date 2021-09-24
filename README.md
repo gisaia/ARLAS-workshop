@@ -3,7 +3,7 @@
 The workshop's aim is to present ARLAS's capabilities to explore big volumes of geo-spatial data using an analytic and geo-analytic approach.
 
 
-The first part of the workshop will be a global presentation of the solution with and different use cases in which it is used, and then a technical presentation.
+The first part of the workshop will be a global presentation of the solution and different use cases in which it is used, and then a technical presentation.
 
 In the second part, we will explore data of :
 
