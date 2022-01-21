@@ -1,0 +1,7 @@
+{
+    "index_name": "brussels_osm_index",
+    "id_path": "id",
+    "geometry_path": "osm.geometry",
+    "centroid_path": "osm.centroid",
+    "timestamp_path": "osm.timestamp"
+}
