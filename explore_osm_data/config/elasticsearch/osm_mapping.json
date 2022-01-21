@@ -1,0 +1,121 @@
+{
+    "mappings": {
+        "properties": {
+            "id": {
+              "type": "keyword"
+            },
+            "internal":{
+              "properties": {
+                "fulltext": {
+                  "type": "text",
+                  "fielddata":true        
+                }
+              }
+            },
+            "osm": {
+              "properties": {
+                "centroid": {
+                  "type": "geo_point"
+                },
+                "geometry": {
+                  "type":"geo_shape"
+                },
+                "osm_id": {
+                  "type": "keyword"
+                },
+                "timestamp": {
+                  "type": "date",
+                  "format": "yyyy-MM-dd'T'HH:mm:ss"
+                },
+                "building": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "other_tags": {
+                  "type": "text",
+                  "copy_to": "internal.fulltext"
+                },
+                "area": {
+                  "type": "float"
+                },
+                "name": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "aeroway": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "amenity": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "admin_level": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "barrier": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "boundary": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "craft": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "geological": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "historic": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "landuse": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "leisure": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "man_made": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "military": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "office": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "place": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "shop": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "sport": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "tourism": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                },
+                "natural": {
+                  "type": "keyword",
+                  "copy_to": "internal.fulltext"
+                }
+              }
+            }
+          }
+    }
+  }
