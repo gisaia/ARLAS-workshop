@@ -127,12 +127,12 @@ You can check that the index is successfuly created by running the following com
 curl -XGET http://localhost:9200/brussels_osm_index/?pretty
 ```
 
-- Index data that is in `data/brussels_and_airport.osm.geojson` file in Elasticsearch. For that, we need Logstash as a data processing pipeline that ingests data in Elasticsearch.
+- Index data that is in `data/brussels.osm.geojson` file in Elasticsearch. For that, we need Logstash as a data processing pipeline that ingests data in Elasticsearch.
  
 We will use the docker image `docker.elastic.co/logstash/logstash` to index the data:
 
 ```shell
-    cat data/brussels_and_airport.osm.geojson | docker run -e XPACK_MONITORING_ENABLED=false \
+    cat data/brussels.osm.geojson | docker run -e XPACK_MONITORING_ENABLED=false \
     --net arlas-exploration-stack-develop_esnet \
     --env ELASTICSEARCH=elasticsearch:9200  \
     --env INDEXNAME=brussels_osm_index --rm -i \
