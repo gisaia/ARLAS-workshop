@@ -16,8 +16,6 @@ You will need :
 - docker & docker-compose
 - curl
 
-### What will you get ?
-
 ## OSM data
 
 OpenStreetMap (OSM) is a collaborative project to create a free editable geographic database of the world.
@@ -63,24 +61,15 @@ curl -o data/belgium.osm.pbf http://download.geofabrik.de/europe/belgium-latest.
 
 *: `pbf` is an OSM format to transfer vector GIS data.
 
-Let's copy `osmconf.ini` file in `data` folder
+### Explore OSM data with ARLAS exploration
 
-```shell
-cp config/ogr2ogr/osmconf.ini data
-```
+In order to make the downloaded OSM data available for exploration, we need to follow the following pipe line
 
-Now let's transform the pbf file to `GeoJSONSeq` format using `ogr2ogr`
+<p align="center">
+    <img src="./images/indexing_osm.png" width="100%">
+</p>
 
-```shell
-docker run -v $PWD/data:/data -e OSM_CONFIG_FILE=/data/osmconf.ini osgeo/gdal ogr2ogr \
-    -sql "SELECT geometry, st_x(st_centroid(geometry)) as lon, st_y(st_centroid(geometry)) as lat , st_area(ST_Transform(geometry,3857)) as area, * FROM multipolygons where building not null AND ST_Intersects(geometry, ST_GeomFromText('POLYGON((4.383 50.913,4.438 50.926,4.53 50.926,4.51 50.876,4.455 50.860,4.400 50.817,4.303 50.810,4.281 50.852,4.305 50.904,4.383 50.913))'))" \
-    -dialect sqlite -t_srs crs:84 -f GeoJSONSeq /data/brussels_and_airport.osm.geojson \
-    /data/belgium.osm.pbf
-````
-
-## Exploration in ARLAS
-
-### Starting the ARLAS stack
+#### Starting the ARLAS stack
 
 - Download the ARLAS-Exploration-stack project and unzip it
 
@@ -93,14 +82,29 @@ docker run -v $PWD/data:/data -e OSM_CONFIG_FILE=/data/osmconf.ini osgeo/gdal og
 ls -l ARLAS-Exploration-stack-develop
 ```
 
-Now our tutorial environment is set up.
-
-
-1. Starting ARLAS Exploration Stack
+- Start the ARLAS Exploration Stack
 
 ```shell
 ./ARLAS-Exploration-stack-develop/start.sh
 ```
+#### Preparing the data to be available for ARLAS
+
+1. Tansform pbf to GeojsonSeq
+
+Let's copy `osmconf.ini` file in `data` folder
+
+```shell
+cp config/ogr2ogr/osmconf.ini data
+```
+
+Now let's transform the pbf file to `GeoJSONSeq` format using `ogr2ogr`
+
+```shell
+docker run -v $PWD/data:/data -e OSM_CONFIG_FILE=/data/osmconf.ini osgeo/gdal ogr2ogr \
+    -sql "SELECT geometry, st_x(st_centroid(geometry)) as lon, st_y(st_centroid(geometry)) as lat , st_area(ST_Transform(geometry,3857)) as area, * FROM multipolygons where building not null AND ST_Intersects(geometry, ST_GeomFromText('POLYGON((4.383 50.913,4.438 50.926,4.53 50.926,4.51 50.876,4.455 50.860,4.400 50.817,4.303 50.810,4.281 50.852,4.305 50.904,4.383 50.913))'))" \
+    -dialect sqlite -t_srs crs:84 -f GeoJSONSeq /data/brussels.osm.geojson \
+    /data/belgium.osm.pbf
+````
 
 2. Indexing The downloaded Brussels data in Elasticsearch
 
