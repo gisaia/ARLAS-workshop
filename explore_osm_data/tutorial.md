@@ -6,7 +6,7 @@ With this tutorial, you'll be able to:
 
 - start an ARLAS-Exploration stack
 - Index some OSM data in Elasticsearch
-- Reference the indexed birdtracking data in ARLAS
+- Reference the indexed OSM data in ARLAS
 - Create a dashboard to explore the OSM data using ARLAS-wui-builder
 
 ### What will you need ?
